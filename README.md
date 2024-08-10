@@ -7,6 +7,7 @@ DB_PASSWORD = add your db password\
 DB_DATABASE = add database name \
 DB_PORT = add port no. of db \
 PORT = add port no. of your server \
+BCRYPT_SECRET = add your secret
 
 
 create a table for user information in your DB
