@@ -1,15 +1,8 @@
 import express from 'express'
-import dotenv from 'dotenv'
 import cors from 'cors'
 import router from './routes/router.js'
 import bodyParser from 'body-parser'
 import { API_END_POINT } from './config/constants.js'
-
-
-
-dotenv.config({
-    path: "./.env"
-});
 
 const app = express();
 

@@ -10,6 +10,11 @@ dotenv.config({
 const db = connect;
 const secretKey = process.env.BCRYPT_SECRET;
 
+
+
+// register
+
+
 export const signUp = (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -50,6 +55,10 @@ export const signUp = (req, res, next) => {
     }
   });
 };
+
+
+// login
+
 
 export const login = (req, res, next) => {
   const { email, password } = req.body;
@@ -93,6 +102,10 @@ export const login = (req, res, next) => {
   });
 };
 
+
+//getUser
+
+
 export const getUser = (req, res, next) => {
     const idSql = "SELECT * FROM userinfo where id=?"
   if (
@@ -107,11 +120,22 @@ export const getUser = (req, res, next) => {
   }
 
   const theToken = req.headers.authorization.split(" ")[1];
-  const decoded = jwt.verify(theToken, secretKey);
+  let decode = ''
+
+  try{
+    decode = jwt.verify(theToken, secretKey);
+
+  }catch(error){
+    
+    return res.status(401).json({
+      success: false,
+      message: "Invalid token",
+      });
+  }
 
   db.query(
     idSql,
-    decoded.id,
+    decode.id,
     function (error, results, fields) {
       if (error) throw error;
       return res.status(200).json({

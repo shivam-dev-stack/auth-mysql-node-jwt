@@ -3,4 +3,3 @@ export const API_END_POINT = {
     CONTEXT:'user',
     TYPE: 'api'
 }
-
